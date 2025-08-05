@@ -57,6 +57,7 @@ function isValid(s: string): boolean {
     const stack: string[] = []  // 2. Stack
 
     for (const c of s) {     // 3. For loop
+        console.log(stack, c)
         switch (true) {         // 4. Switch statement and logic.
             case c === '(' || c === '{' || c === '[':
                 stack.push(c)
@@ -69,12 +70,15 @@ function isValid(s: string): boolean {
                 c === ']' && stack[stack.length-1] === '['
             ):
                 stack.pop()
+                break
+            default:
+                return false
         }
     }
 
     return stack.length === 0
 }
 
-const parenthesis = "[({})]"
+const parenthesis = "([}}])"
 const result = isValid(parenthesis)
 console.log(result)
